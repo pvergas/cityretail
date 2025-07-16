@@ -14,3 +14,4 @@ logbook/
 .DS_Store
 Thumbs.db
 .env
+vergas_dump.sql

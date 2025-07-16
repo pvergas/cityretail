@@ -28,3 +28,4 @@ data/raw/*
 logbook/
 cityretail_venv/
 .env
+vergas_dump.sql
