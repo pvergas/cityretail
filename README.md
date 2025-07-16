@@ -8,8 +8,8 @@ This project extracts, cleans, transforms, and loads CityRetail sales data into 
 
 1. **Clone the repo**
     ```bash
-    git clone https://github.com/your-username/cityretail-etl.git
-    cd cityretail-etl
+    git clone https://github.com/pvergas/cityretail.git
+    cd cityretail
     ```
 
 2. **Add raw CSVs to:** `data/raw/`
@@ -32,6 +32,13 @@ This project extracts, cleans, transforms, and loads CityRetail sales data into 
 
 ---
 
+## Accessing PostgreSQL
+
+To inspect the database from the running container:
+
+```bash
+docker exec -it cityretail-db-1 psql -U $POSTGRES_USER -d cityretail
+```
 
 ## Makefile Commands
 

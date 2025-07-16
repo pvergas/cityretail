@@ -7,8 +7,10 @@ cityretail_venv/
 .ipynb_checkpoints/
 data/raw/*
 data/cleaned/*
+data/logs/*
 !data/raw/.gitkeep
 !data/cleaned/.gitkeep
+!data/logs/.gitkeep
 *.log
 logbook/
 .DS_Store
