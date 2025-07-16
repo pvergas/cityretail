@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+cityretail_venv/
+.ipynb_checkpoints/
+data/raw/*
+data/cleaned/*
+!data/raw/.gitkeep
+!data/cleaned/.gitkeep
+*.log
+logbook/
+.DS_Store
+Thumbs.db
+.env

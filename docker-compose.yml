@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: cityretail
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/star_schema.sql:/docker-entrypoint-initdb.d/star_schema.sql
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d cityretail"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  etl:
+    build:
+      context: .
+    env_file: .env
+    volumes:
+      - ./:/code
+      - ./data/logs:/code/data/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST:      db
+      DB_PORT:      5432
+      DB_NAME:      cityretail
+      DB_USER:      ${DB_USER}
+      DB_PASS:      ${DB_PASS}
+      DATA_PATH:    /code/data
+      TZ:           Europe/Athens
+    working_dir: /code
+    restart: on-failure
+
+volumes:
+  pgdata:
